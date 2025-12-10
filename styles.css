@@ -1,0 +1,233 @@
+/* reset + prevent overscroll */
+* { box-sizing: border-box; }
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: radial-gradient(circle at 50% 45%, rgba(0,150,150,0.06), rgba(0,0,0,0.95));
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #dff;
+}
+
+/* wrapper */
+.hud-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* TOP RIGHT small label */
+.hud-topright {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  color: #9fe;
+  font-weight: 600;
+  text-shadow: 0 1px 8px rgba(0,255,255,0.08);
+}
+.hud-mini {
+  background: rgba(0,0,0,0.25);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,255,255,0.06);
+}
+
+/* TIME big on top-left */
+.hud-time {
+  position: absolute;
+  top: 22px;
+  left: 32px;
+  color: #8ef;
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(0,255,255,0.06);
+  letter-spacing: 1px;
+}
+
+/* CENTER container */
+.hud-center {
+  width: 95%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 720px 1fr;
+  align-items: center;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+/* glass frame */
+.hud-glass {
+  grid-column: 2 / 3;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.glass-inner {
+  width: 100%;
+  max-width: 920px;
+  height: 420px;
+  border-radius: 40px;
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(0,50,50,0.18), rgba(0,20,20,0.20));
+  border: 1px solid rgba(0,200,200,0.12);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    inset 0 2px 18px rgba(0,255,255,0.02),
+    0 0 36px rgba(0,200,200,0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+/* video slot in center of glass */
+.video-slot {
+  width: 68%;
+  height: 64%;
+  min-width: 420px;
+  min-height: 240px;
+  max-width: 760px;
+  max-height: 360px;
+  border-radius: 22px;
+  background: rgba(0,0,0,0.75);
+  box-shadow:
+    inset 0 0 36px rgba(0,200,200,0.06),
+    0 8px 30px rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* actual video element */
+.hud-video {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+  display: block;
+}
+
+/* left & right control columns (outside glass) */
+.hud-left,
+.hud-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px; /* Start Gesture + Describe Scene side by side */
+}
+
+/* buttons */
+.hud-btn {
+  pointer-events: auto;
+  appearance: none;
+  border: none;
+  color: #002;
+  background: linear-gradient(180deg,#17e6d6,#00c2b9);
+  padding: 12px 22px;
+  border-radius: 26px;
+  font-weight: 700;
+  box-shadow: 0 8px 28px rgba(0,200,200,0.08), 0 2px 6px rgba(0,0,0,0.35);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s;
+}
+.hud-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(0,200,200,0.12);
+}
+
+.gesture-btn {
+  background: linear-gradient(180deg,#ffd36e,#f1b23a);
+  color: #051219;
+}
+.voice-btn {
+  background: linear-gradient(180deg,#06b0ff,#008ad0);
+  color: #fff;
+}
+.stop-btn {
+  background: linear-gradient(180deg,#ff6f6f,#c93f3f);
+  color: #fff;
+}
+
+/* NEW: Describe Scene button style */
+.vision-btn {
+  background: linear-gradient(180deg,#00e5ff,#0066ff);
+  color: #fff;
+}
+
+/* Subtitle box centered bottom */
+.subtitle-box {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 420px;
+  max-width: 70%;
+  padding: 16px 26px;
+  border-radius: 40px;
+  background: linear-gradient(180deg, rgba(0,255,255,0.03), rgba(0,0,0,0.5));
+  border: 1px solid rgba(0,220,220,0.08);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.6),
+    0 0 30px rgba(0,200,200,0.03);
+  text-align: center;
+  color: #cfffff;
+  font-weight: 600;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+/* small HUD corners */
+.hud-bottom-left,
+.hud-bottom-right {
+  position: absolute;
+  bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  color: #8ef;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(0,255,255,0.04);
+}
+.hud-bottom-left { left: 18px; }
+.hud-bottom-right { right: 18px; align-items: flex-end; }
+
+.tiny { font-size: 12px; opacity: 0.8; }
+.tiny2 { font-size: 14px; }
+
+/* responsive adjustments */
+@media (max-width: 1100px) {
+  .hud-center { grid-template-columns: 1fr 1fr 1fr; }
+  .video-slot {
+    width: 92%;
+    height: 56%;
+    min-width: 320px;
+    min-height: 180px;
+  }
+}
+@media (max-width: 720px) {
+  .hud-wrapper { padding: 12px; }
+  .video-slot {
+    width: 100%;
+    height: 44%;
+    min-width: 280px;
+    min-height: 160px;
+  }
+  .subtitle-box {
+    font-size: 16px;
+    min-width: 260px;
+    max-width: 90%;
+  }
+}
