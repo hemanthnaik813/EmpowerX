@@ -1,0 +1,44 @@
+# Node
+node_modules/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React build
+build/
+dist/
+*.env
+.env.local
+.env.development
+.env.production
+
+# Python / Flask
+venv/
+__pycache__/
+*.pyc
+instance/
+flask_session/
+
+# Large ML Models (do NOT upload)
+models/*.tflite
+models/*.pt
+models/*.pth
+models/*.h5
+models/*.pkl
+models/*.onnx
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# Python env
+.env
+.env.*
+
+# Imagga keys / secrets
+IMAGGA_API_KEY
+IMAGGA_API_SECRET

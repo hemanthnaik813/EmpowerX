@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Assistive HUD</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div id="hud-container">
+    <img id="hud-overlay" src="/hub.jpg" alt="HUD Overlay">
+
+    <div id="hud-time">22:15</div>
+
+    <div id="webcam-container">
+        <video id="video" autoplay playsinline></video>
+    </div>
+
+    <div id="buttons-left">
+        <button id="startGestureBtn">✋ Start Webcam</button>
+    </div>
+
+    <div id="buttons-right">
+        <button id="startVoiceBtn">🎤 Voice Search</button>
+        <button id="stopGestureBtn">⛔ Stop</button>
+    </div>
+
+    <div id="output-text"></div>
+</div>
+
+<script src="client.js"></script>
+</body>
+</html>
